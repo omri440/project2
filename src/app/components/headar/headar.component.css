@@ -1,0 +1,10 @@
+.spacer {
+    flex: 1 1 auto;
+  }
+
+.mat-raised-button{
+        margin: 10px;
+}
+.mat-icon-button {
+    padding-top: 5px;
+}
