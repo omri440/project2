@@ -43,21 +43,25 @@ private initializeFormControls(): void {
   });
 }
 
-  private addNewRecipe(): void {
-    const newRecipe = new Post(
+  private addNewPost(): void {
+    const newPost= new Post(
       this.postForm.value.name,
       this.postForm.value.Description,
     );
-    this.postService.posts.push(newRecipe);
+    this.postService.setPost(newPost).subscribe(res =>{
+      this.postService.posts.push(newPost);
     this.postService.postSubject.next(this.postService.posts);
+    })
   }
 
   private editPost(): void {
     const editRecipe = this.postService.getPostById(this.id);
     editRecipe.name = this.postForm.value.name;
     editRecipe.description = this.postForm.value.Description;
-    this.postService.posts[this.id] = editRecipe;
-    this.postService.postSubject.next(this.postService.posts);
+    this.postService.setPost(editRecipe).subscribe(message => {
+      this.postService.posts[this.id] = editRecipe;
+      this.postService.postSubject.next(this.postService.posts);
+    })
   }
 
   onSubmit(): void {
@@ -65,7 +69,7 @@ private initializeFormControls(): void {
       this.editPost();
     }
     else{
-    this.addNewRecipe();
+    this.addNewPost();
     }
     this.postForm.reset();
     this.router.navigate(['poststep'])

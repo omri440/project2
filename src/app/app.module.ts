@@ -13,6 +13,7 @@ import { OpeningPageComponent } from './components/opening-page/opening-page.com
 import { CreatePostComponent } from './components/create-post/create-post.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,
